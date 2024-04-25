@@ -83,10 +83,31 @@
   </div>
   <div id="nav" style="font-weight: 600">
     <ul class="d-flex align-items-center justify-content-center" style="gap: 40px; margin-bottom: -1px; list-style: none">
-        <li><a class="nav-a text-white text-decoration-none" href="/beranda">{{ Request::is('beranda*') ? '•' : '' }} <i class="fas fa-home"></i> BERANDA</a></li>
+        <li><a class="nav-a text-white text-decoration-none" href="/">{{ Request::is('/') ? '•' : '' }} <i class="fas fa-home"></i> BERANDA</a></li>
         <li><a class="nav-a text-white text-decoration-none" href="/animes">{{ Request::is('animes*') ? '•' : '' }} <i class="fas fa-tv"></i> ANIME</a></li>
         <li><a class="nav-a text-white text-decoration-none" href="/categories">{{ Request::is('categories*') ? '•' : '' }} <i class="fas fa-tags"></i> KATEGORI</a></li>
-        <li><a class="nav-a text-white text-decoration-none" href="/login">{{ Request::is('login*') ? '•' : '' }}<i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
+        @auth
+         <li class="nav-item dropdown text-white" >
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <i class="fas fa-user"></i> Halo, {{ auth()->user()->name }} </i>
+                  </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/dashboard"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                          <form action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="dropdown-item">
+                                 <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </li>
+           @else
+
+           <li><a class="nav-a text-white text-decoration-none" href="/login">{{ Request::is('login*') ? '•' : '' }}<i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
+        @endauth
     </ul>
 </div>
 

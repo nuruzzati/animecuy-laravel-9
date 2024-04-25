@@ -21,13 +21,13 @@ Route::get('/dashboard', function() {
 });
 
 // untuk admin
-Route::resource('/dashboard/animes', 'DashboardAnimeController');
-Route::resource('/dashboard/categories', 'DashboardCategoriesController');
+Route::resource('/dashboard/animes', 'DashboardAnimeController')->middleware('auth');
+Route::resource('/dashboard/categories', 'DashboardCategoriesController')->middleware('auth');
 
 // untuk user
 Route::resource('/animes', 'AnimesController');
 Route::resource('/categories', 'CategoriesController');
-Route::get('/beranda', function() {
+Route::get('/', function() {
     return view('user.beranda');
 });
 
@@ -36,8 +36,9 @@ Route::get('categories/{id}', 'CategoriesController@show')->name('categories.sho
 
 
 // untuk login
-Route::get('/login', 'LoginController@index');
+Route::get('/login', 'LoginController@index')->name('login')->middleware('guest');
 Route::post('/login', 'LoginController@authenticate');
 
-// untuk register
-Route::get('/register', 'RegisterController@index');
+
+// logout
+Route::post('/logout', 'LoginController@logout');

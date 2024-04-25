@@ -30,9 +30,9 @@
                 <h5 class=" mb-3 fw-bold text-center">LOGIN ANIMECUY</h5>
             
             <div class="form-floating">
-            <input type="email" autofocus class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="name@example.com" value="{{ old('email') }}">
-            <label for="email">Email address</label>
-            @error('email')
+           <input type="email" autofocus class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+            <label for="email">Email</label>
+            @error('name')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>

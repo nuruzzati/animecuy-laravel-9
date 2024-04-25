@@ -85,9 +85,35 @@
     <ul class="d-flex align-items-center justify-content center" style="gap: 40px;margin-bottom: -1px;list-style: none">
       <li><a class="nav-a text-white text-decoration-none"  href="/dashboard"> {{ Request::is('dashboard') ? '•' : '' }}<i class="fas fa-home"></i> DASHBOARD</a></li>
       <li><a class="nav-a text-white text-decoration-none"  href="/dashboard/animes"> {{ Request::is('dashboard/animes*') ? '•' : '' }}<i class="fas fa-tv"></i> ANIME</a></li>
+
       <li><a class="nav-a text-white text-decoration-none"  href="/dashboard/categories"> {{ Request::is('dashboard/categories*') ? '•' : '' }} <i class="fas fa-tags"></i> KATEGORI</a></li>
-      <li><a class="nav-a text-white text-decoration-none"  href="#"><i class="fas fa-sign-out-alt"></i> LOGOUT</a></li>
-  
+      
+      {{-- <form action="/logout" method="post">
+      <button type="submit" class="dropdown-item">
+        <i class="bi bi-box-arrow-in-right"></i> Logout
+      </button>
+    </form> --}}
+    
+         <li class="nav-item dropdown text-white" >
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <i class="fas fa-user"></i> Halo, {{ auth()->user()->name }} </i>
+                  </a>
+                      <ul class="dropdown-menu">
+<li><a class="dropdown-item" href="/animes"><i class="fas fa-users"></i> Halaman user</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                          <form action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="dropdown-item">
+                                 <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </li>
+
+
+      
     </ul>
   </div>
 
